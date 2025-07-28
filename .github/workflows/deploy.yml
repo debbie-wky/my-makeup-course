@@ -13,6 +13,9 @@ jobs:
       pages: write
       id-token: write
 
+    environment: # <-- 新增這一行
+      name: github-pages # <-- 新增這一行，並確保縮排正確
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
