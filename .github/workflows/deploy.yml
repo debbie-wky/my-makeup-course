@@ -1,34 +1,30 @@
-name: Deploy to GitHub Pages # 工作流程的名稱
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main # 當有新的程式碼推送到 'main' 分支時觸發此工作流程
-              # 如果您的主分支名稱是 'master'，請將此處改為 'master'
+      - main # 或者 'master'，請根據您的主分支名稱調整
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # 在 Ubuntu 系統上運行此工作
+    runs-on: ubuntu-latest
     permissions:
-      contents: write # 允許寫入儲存庫內容
-      pages: write    # 允許寫入 GitHub Pages
-      id-token: write # 允許獲取 ID 令牌，用於身份驗證
+      contents: write
+      pages: write
+      id-token: write
 
     steps:
-      - name: Checkout repository # 步驟1：將儲存庫程式碼複製到工作環境
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages # 步驟2：設定 GitHub Pages 環境
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact # 步驟3：上傳要部署的檔案
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # 指定要上傳的檔案路徑。'.' 表示上傳儲存庫根目錄下的所有檔案。
-                    # 如果您的 index.html 在子資料夾中 (例如 'my-site/')，
-                    # 請將此處改為 'my-site/'
+          path: '.' # 這表示會上傳儲存庫根目錄下的所有檔案，包括 index.html
 
-      - name: Deploy to GitHub Pages # 步驟4：將上傳的檔案部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        Add GitHub Pages deployment workflow
