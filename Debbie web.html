@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五官和諧美學原理系列課程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Harmony (Beige, Soft Pink, Muted Gold, Off-White) -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling layout with a sticky navigation bar. The structure guides the user from awareness (Hero, Problem/Solution) to consideration (Course Outline, Instructor Profile) and finally to conversion (CTA). This non-linear exploration via nav bar and interactive tabs is more engaging than a static text document. -->
+    <!-- Visualization & Content Choices: Report Info: 5-unit course outline -> Goal: Organize/Inform -> Viz/Method: Interactive JS-powered tabs -> Interaction: Click to reveal content -> Justification: Breaks down dense info, encourages user interaction, and is more engaging than a static list. Report Info: Instructor's dual qualifications -> Goal: Build Trust -> Viz/Method: Two-column layout with icons -> Justification: Clearly separates and highlights unique selling points. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FDF8F5; /* Warm beige background */
+            color: #4A4A4A; /* Dark gray text */
+        }
+        .text-brand-primary { color: #D9A98D; } /* Muted Gold */
+        .bg-brand-primary { background-color: #D9A98D; }
+        .text-brand-secondary { color: #6D5D53; } /* Deep brown */
+        .bg-brand-secondary { background-color: #6D5D53; }
+        .bg-brand-accent { background-color: #F3E9E2; } /* Soft Pink/Beige */
+        .border-brand-primary { border-color: #D9A98D; }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #D9A98D;
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(217, 169, 141, 0.39);
+        }
+        .btn-primary:hover {
+            background-color: #C7987B;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(217, 169, 141, 0.5);
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+            color: #6D5D53;
+        }
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #8C7B70;
+            margin-top: 0.5rem;
+        }
+        .tab.active {
+            background-color: #D9A98D;
+            color: white;
+            border-color: #D9A98D;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-brand-secondary">美學化妝導師 Debbie</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#philosophy" class="text-gray-600 hover:text-brand-primary transition">課程理念</a>
+                <a href="#curriculum" class="text-gray-600 hover:text-brand-primary transition">課程大綱</a>
+                <a href="#instructor" class="text-gray-600 hover:text-brand-primary transition">導師介紹</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-primary transition">立即報名</a>
+            </div>
+            <a href="#contact" class="md:hidden btn btn-primary text-sm px-4 py-2">報名</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[80vh] flex items-center bg-brand-accent">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-brand-secondary leading-tight">
+                    解鎖你的專屬美學密碼
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    歡迎來到「五官和諧美學原理」系列課程！這不僅是化妝技巧的傳授，更是一場關於理解美、創造美、表達美的深度探索。
+                </p>
+                <div class="mt-8">
+                    <a href="#curriculum" class="btn btn-primary">探索課程內容</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="section-title fade-in">超越技巧，洞悉美學</h2>
+                    <p class="section-subtitle fade-in">
+                        我們的課程旨在幫助你從根本上理解美的構成，將化妝昇華為一門自我表達的藝術。
+                    </p>
+                </div>
+                <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                        <div class="text-4xl text-brand-primary mb-4">🎨</div>
+                        <h3 class="text-xl font-semibold text-brand-secondary mb-2">深入理解原理</h3>
+                        <p class="text-gray-600">學會分析臉型與五官，掌握平衡、比例、光影的藝術，不再盲目模仿。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in" style="transition-delay: 150ms;">
+                        <div class="text-4xl text-brand-primary mb-4">✨</div>
+                        <h3 class="text-xl font-semibold text-brand-secondary mb-2">建立個人風格</h3>
+                        <p class="text-gray-600">告別千篇一律的妝容，找到最能彰顯你氣質和個性的專屬美學方案。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in" style="transition-delay: 300ms;">
+                        <div class="text-4xl text-brand-primary mb-4">💡</div>
+                        <h3 class="text-xl font-semibold text-brand-secondary mb-2">提升審美鑑賞力</h3>
+                        <p class="text-gray-600">將美學知識應用於日常，讓化妝成為一種藝術表達，而非簡單的遮蓋。</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in" style="transition-delay: 450ms;">
+                        <div class="text-4xl text-brand-primary mb-4">💖</div>
+                        <h3 class="text-xl font-semibold text-brand-secondary mb-2">重塑自信魅力</h3>
+                        <p class="text-gray-600">當你真正理解並能駕馭「美」，你的自信將由內而外地從容散發。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curriculum Section -->
+        <section id="curriculum" class="py-20 md:py-28 bg-brand-accent">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="section-title fade-in">課程大綱：五官和諧美學原理</h2>
+                    <p class="section-subtitle fade-in">
+                        點擊下方單元標題，探索我們循序漸進的系統化課程。
+                    </p>
+                </div>
+                <div class="mt-12 max-w-4xl mx-auto fade-in">
+                    <div id="tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                        <button class="tab active" data-tab="1">單元一：美學基礎</button>
+                        <button class="tab" data-tab="2">單元二：色彩風格</button>
+                        <button class="tab" data-tab="3">單元三：光影塑造</button>
+                        <button class="tab" data-tab="4">單元四：和諧實踐</button>
+                        <button class="tab" data-tab="5">單元五：風格建立</button>
+                    </div>
+                    <div id="tab-contents-container" class="bg-white p-8 md:p-12 rounded-xl shadow-lg min-h-[300px]">
+                        <div id="tab-1" class="tab-content active">
+                            <h3 class="text-2xl font-bold text-brand-secondary mb-4">美學基礎與五官分析</h3>
+                            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                                <li><strong>核心概念：</strong>探索和諧美、黃金比例、平衡與對稱在人臉上的奧秘。</li>
+                                <li><strong>臉型與骨骼結構：</strong>深入分析不同臉型的特點，學習如何透過妝容修飾。</li>
+                                <li><strong>三庭五眼與個人特徵：</strong>掌握經典美學標準，辨識並優化你的獨特五官分佈。</li>
+                            </ul>
+                        </div>
+                        <div id="tab-2" class="tab-content">
+                            <h3 class="text-2xl font-bold text-brand-secondary mb-4">色彩學與個人風格</h3>
+                            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                                <li><strong>色彩基礎理論：</strong>色相、明度、彩度、冷暖色調在彩妝中的應用。</li>
+                                <li><strong>個人色彩診斷（簡介）：</strong>探索適合你的專屬色彩，提升整體氣色與和諧度。</li>
+                                <li><strong>色彩搭配藝術：</strong>學習如何運用色彩組合，打造不同風格與情緒的妝容。</li>
+                            </ul>
+                        </div>
+                        <div id="tab-3" class="tab-content">
+                            <h3 class="text-2xl font-bold text-brand-secondary mb-4">光影與立體感塑造</h3>
+                            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                                <li><strong>光影原理：</strong>理解光線如何雕塑臉部輪廓，創造立體感。</li>
+                                <li><strong>修容與提亮技巧：</strong>根據臉型和五官特點，精準運用陰影與高光，塑造完美輪廓。</li>
+                                <li><strong>底妝層次美學：</strong>打造通透、自然且富有生命力的精緻底妝。</li>
+                            </ul>
+                        </div>
+                        <div id="tab-4" class="tab-content">
+                            <h3 class="text-2xl font-bold text-brand-secondary mb-4">和諧妝容實踐</h3>
+                            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                                <li><strong>眉毛的黃金比例：</strong>設計最能襯托臉型的完美眉型。</li>
+                                <li><strong>眼妝構圖與調整：</strong>根據眼型調整眼線、眼影、睫毛，實現視覺平衡與放大。</li>
+                                <li><strong>唇妝與表情美學：</strong>唇形修飾與色彩選擇，提升整體氣質與氣場。</li>
+                            </ul>
+                        </div>
+                        <div id="tab-5" class="tab-content">
+                            <h3 class="text-2xl font-bold text-brand-secondary mb-4">個人化妝風格建立</h3>
+                            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                                <li><strong>從模仿到創造：</strong>鼓勵學員運用所學原理，探索並創造屬於自己的獨特妝容風格。</li>
+                                <li><strong>化妝工具的智慧選擇與保養。</strong></li>
+                                <li><strong>妝容的日常應用與進階變化。</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructor Section -->
+        <section id="instructor" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="section-title fade-in">你的美學引路人：Debbie</h2>
+                    <p class="section-subtitle fade-in">
+                        一位擁有豐富經驗與獨特教學理念的專業導師。
+                    </p>
+                </div>
+                <div class="mt-12 grid md:grid-cols-5 gap-8 items-center">
+                    <div class="md:col-span-2 fade-in">
+                        <img src="https://placehold.co/600x700/F3E9E2/6D5D53?text=Debbie" alt="導師 Debbie" class="rounded-xl shadow-xl w-full h-auto object-cover">
+                    </div>
+                    <div class="md:col-span-3 space-y-6 fade-in" style="transition-delay: 150ms;">
+                        <p class="text-lg text-gray-700">
+                            Debbie 是一位擁有 **7年豐富化妝師經驗** 和 **3年專業教學經驗** 的資深美學導師。她堅信，化妝不應只是遮蓋或模仿，而是一種**自我表達的藝術**。
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-brand-primary text-2xl mr-4">✓</span>
+                                <div>
+                                    <h4 class="font-semibold text-brand-secondary">IICT認證專業導師</h4>
+                                    <p class="text-gray-600">不僅精通化妝技巧，更深諳如何將複雜知識系統化地傳授給學生。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-brand-primary text-2xl mr-4">✓</span>
+                                <div>
+                                    <h4 class="font-semibold text-brand-secondary">獨特藝術教學背景</h4>
+                                    <p class="text-gray-600">擁有兒童畫班導師證書，賦予她無與倫比的耐心、觀察力與啟發式教學風格，擅長將抽象概念生動化。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="bg-brand-accent border-l-4 border-brand-primary p-4 rounded-r-lg text-brand-secondary italic">
+                            「我將引導你『如何理解美並運用化妝表達美』，幫助你發掘內在光芒，透過妝容展現最自信、最和諧的自己。」
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section id="contact" class="py-20 md:py-28 bg-brand-secondary text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold fade-in">立即預約你的美學之旅</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto fade-in">
+                    探索美的無限可能，從「五官和諧美學原理」系列課程開始。名額有限，歡迎查詢及報名。
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4 fade-in">
+                     <a href="https://wa.me/85260962734" target="_blank" class="btn bg-white text-brand-secondary hover:bg-gray-100 w-full sm:w-auto">
+                        <span class="mr-2">📱</span> WhatsApp 查詢
+                    </a>
+                    <a href="https://www.instagram.com/makeupby.debbie" target="_blank" class="btn bg-white/20 text-white hover:bg-white/30 w-full sm:w-auto">
+                        <span class="mr-2">📸</span> Instagram 探索作品
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-accent py-6">
+        <div class="container mx-auto px-6 text-center text-gray-600">
+            <p>&copy; 2025 Makeup by Debbie. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tabs functionality
+            const tabsContainer = document.getElementById('tabs-container');
+            const tabContentsContainer = document.getElementById('tab-contents-container');
+
+            if (tabsContainer) {
+                const tabs = tabsContainer.querySelectorAll('.tab');
+                const tabContents = tabContentsContainer.querySelectorAll('.tab-content');
+
+                tabsContainer.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('tab')) {
+                        const tabNumber = e.target.dataset.tab;
+
+                        tabs.forEach(tab => tab.classList.remove('active'));
+                        e.target.classList.add('active');
+
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            if (content.id === `tab-${tabNumber}`) {
+                                content.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Fade-in on scroll functionality
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
